@@ -11,10 +11,9 @@ class HomeShoes extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-            CustomAppbar(),
-            ContainerShoe()
+        children: const[
+          CustomAppbar(),
+           ShoeShadow()
 
         ],
       )
