@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 
 class ShoeShadow extends StatelessWidget {
-  const ShoeShadow({Key? key}) : super(key: key);
+  final bool fullscreen;
+  const ShoeShadow({super.key, this.fullscreen = false});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+      padding: EdgeInsets.symmetric(
+          horizontal: (fullscreen) ? 8 : 30, vertical: (fullscreen) ? 8 : 5),
       child: Container(
         width: double.infinity,
-        height: size.height * 0.60,
+        height: (fullscreen) ? size.height * 0.48 : size.height * 0.55,
         decoration: BoxDecoration(
-            color: Colors.orange[300], borderRadius: BorderRadius.circular(50)),
+            color: Colors.orange[300],
+            borderRadius: (fullscreen)
+                ? const BorderRadius.only(
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30))
+                : BorderRadius.circular(50)),
         child: Column(
-          children: [const _ShoeWithShadow(), _ShoeSize()],
+          children: [
+            _ShoeWithShadow(
+              fullscreen: fullscreen,
+            ),
+            if (!fullscreen) _ShoeSize()
+          ],
         ),
       ),
     );
@@ -49,24 +63,32 @@ class _BoxSize extends StatelessWidget {
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+            color: (sizeShoe == 9) ? Colors.orange : Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              if (sizeShoe == 9)
+                const BoxShadow(
+                    color: Colors.orange, blurRadius: 10, offset: Offset(0, 5))
+            ]),
         child: Container(
           alignment: Alignment.center,
           child: Text(
             sizeShoe.toString().replaceAll('.0', ''),
-            style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.orange),
+            style: TextStyle(
+              color: (sizeShoe == 9) ? Colors.white : Colors.orange,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ));
   }
 }
 
 class _ShoeWithShadow extends StatelessWidget {
+  final bool fullscreen;
   const _ShoeWithShadow({
-    Key? key,
-  }) : super(key: key);
+    this.fullscreen = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +96,13 @@ class _ShoeWithShadow extends StatelessWidget {
       children: [
         const Positioned(bottom: 80, left: 100, child: _Shadow()),
         Padding(
-          padding: const EdgeInsets.all(50),
-          child: Image.asset('assets/img/azul.png'),
+          padding: EdgeInsets.only(
+              top: (fullscreen) ? 10 : 60,
+              left: (fullscreen) ? 70 : 60,
+              right: (fullscreen) ? 70 : 60),
+          child: Image.asset(
+            'assets/img/azul.png',
+          ),
         ),
       ],
     );
