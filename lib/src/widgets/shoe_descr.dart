@@ -14,6 +14,7 @@ class ShoeDescription extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text( title, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w700),),
+          const SizedBox(height: 15,),
           Text(description, style: const TextStyle(color: Colors.black54, height: 1.6),)
         ],
       ),
