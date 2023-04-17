@@ -9,9 +9,25 @@ class ShoeDescrPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const ShoeShadow(
+         Stack(
+           children:  [
+              const ShoeShadow(
             fullscreen: true,
           ),
+          Positioned(
+            top: 40,
+            child: FloatingActionButton(
+              elevation: 0,
+              highlightElevation: 0,
+              backgroundColor: Colors.transparent,
+              child: const Icon(Icons.arrow_back_ios_new, size: 30,),
+              onPressed: () {  },
+
+            )
+            
+            )
+           ], 
+         ),
           const ShoeDescription(
             title: 'Nike Air Max 720',
             description:
