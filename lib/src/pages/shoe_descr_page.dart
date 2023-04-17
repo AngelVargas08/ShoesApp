@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_app/src/pages/home_shoes.dart';
 import 'package:shoes_app/src/widgets/widgets.dart';
 
 class ShoeDescrPage extends StatelessWidget {
@@ -11,9 +12,12 @@ class ShoeDescrPage extends StatelessWidget {
         children: [
          Stack(
            children:  [
-              const ShoeShadow(
-            fullscreen: true,
-          ),
+              const Hero(
+                tag: 'Show-1',
+                child:  ShoeShadow(
+                          fullscreen: true,
+                        ),
+              ),
           Positioned(
             top: 40,
             child: FloatingActionButton(
@@ -21,7 +25,7 @@ class ShoeDescrPage extends StatelessWidget {
               highlightElevation: 0,
               backgroundColor: Colors.transparent,
               child: const Icon(Icons.arrow_back_ios_new, size: 30,),
-              onPressed: () {  },
+              onPressed: () =>  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeShoes(),)),
 
             )
             

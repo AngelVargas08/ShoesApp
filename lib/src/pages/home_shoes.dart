@@ -14,8 +14,10 @@ class HomeShoes extends StatelessWidget {
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
           child: Column(
-            children: const [
-              ShoeShadow(),
+            children:  const[
+              Hero(
+                tag: 'Show-1',
+              child: ShoeShadow()),
               ShoeDescription(
                 title: 'Nike Air Max 720',
                 description:

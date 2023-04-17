@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_app/src/pages/shoe_descr_page.dart';
 
 class ShoeShadow extends StatelessWidget {
   final bool fullscreen;
@@ -7,28 +8,35 @@ class ShoeShadow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: (fullscreen) ? 8 : 30, vertical: (fullscreen) ? 8 : 5),
-      child: Container(
-        width: double.infinity,
-        height: (fullscreen) ? size.height * 0.48 : size.height * 0.55,
-        decoration: BoxDecoration(
-            color: Colors.orange[300],
-            borderRadius: (fullscreen)
-                ? const BorderRadius.only(
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50),
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30))
-                : BorderRadius.circular(50)),
-        child: Column(
-          children: [
-            _ShoeWithShadow(
-              fullscreen: fullscreen,
-            ),
-            if (!fullscreen) _ShoeSize()
-          ],
+    return GestureDetector(
+      onTap: () {
+        if(!fullscreen){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const ShoeDescrPage(),));
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: (fullscreen) ? 8 : 30, vertical: (fullscreen) ? 8 : 5),
+        child: Container(
+          width: double.infinity,
+          height: (fullscreen) ? size.height * 0.48 : size.height * 0.55,
+          decoration: BoxDecoration(
+              color: Colors.orange[300],
+              borderRadius: (fullscreen)
+                  ? const BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30))
+                  : BorderRadius.circular(50)),
+          child: Column(
+            children: [
+              _ShoeWithShadow(
+                fullscreen: fullscreen,
+              ),
+              if (!fullscreen) _ShoeSize()
+            ],
+          ),
         ),
       ),
     );
