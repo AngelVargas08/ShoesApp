@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_app/src/helper/helpers.dart';
 import 'package:shoes_app/src/widgets/widgets.dart';
 
 class HomeShoes extends StatelessWidget {
@@ -6,13 +7,17 @@ class HomeShoes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    changeStatusDark();
+
     return Scaffold(
         body: Column(
       children: [
         const CustomAppbar(),
         Expanded(
             child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(), 
           child: Column(
             children:  const[
               Hero(
